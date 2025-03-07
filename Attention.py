@@ -23,14 +23,14 @@ class SelfAttention(nn.Module):
         softmax = nn.functional.softmax(scaled, dim=-1)
         return softmax @ V
 
-class multiHeadAttention(nn.Module):
+class MultiHeadAttention(nn.Module):
     def __init__(self, embed_dim, num_heads):
         super().__init__()
         self.head_size = embed_dim // num_heads
-        self.MSA = nn.ModuleList([SelfAttention(embed_dim, self.head_size) for _ in range(num_heads)])
+        self.HeadsList = nn.ModuleList([SelfAttention(embed_dim, self.head_size) for _ in range(num_heads)])
         self.output_proj = nn.Linear(embed_dim, embed_dim)
 
     def forward(self, x):
-        attention = torch.cat([h(x, x, x) for h in self.MSA], dim=-1)
+        attention = torch.cat([h(x, x, x) for h in self.HeadsList], dim=-1)
         attention = self.output_proj(attention)
         return attention
