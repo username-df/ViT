@@ -1,12 +1,12 @@
 import torch
 from torch import nn
-from Attention import multiHeadAttention
+from Attention import MultiHeadAttention
 
 class Encoder(nn.Module):
     def __init__(self, embed_dim):
         super().__init__()
         
-        self.MSA = multiHeadAttention(embed_dim, num_heads=4)
+        self.MSA = MultiHeadAttention(embed_dim, num_heads=4)
 
         self.MLP = nn.Sequential([
             nn.Linear(embed_dim, embed_dim),
