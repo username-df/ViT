@@ -8,9 +8,9 @@ class SelfAttention(nn.Module):
         self.scale = self.qkv_output ** -0.5
 
         # (batch, num_patches, qkv_output)
-        self.query = nn.Linear(embed_dim, self.qkv_output, bias=False)
-        self.key = nn.Linear(embed_dim, self.qkv_output, bias=False)
-        self.value = nn.Linear(embed_dim, self.qkv_output, bias=False)
+        self.query = nn.Linear(embed_dim, self.qkv_output)
+        self.key = nn.Linear(embed_dim, self.qkv_output)
+        self.value = nn.Linear(embed_dim, self.qkv_output)
 
     def forward(self, Q, K, V):
         Q = self.query(Q)
