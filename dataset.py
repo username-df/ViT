@@ -12,5 +12,5 @@ transform = transforms.Compose([
 train_dataset = datasets.CIFAR100(root='./cifar100', train=True, download=False, transform=transform)
 test_dataset = datasets.CIFAR100(root='./cifar100', train=False, download=False, transform=transform)
 
-train_data = DataLoader(train_dataset, batch_size=64, shuffle=True)
-test_data = DataLoader(test_dataset, batch_size=64, shuffle=False)
+train_data = DataLoader(train_dataset, batch_size=512, shuffle=True)
+test_data = DataLoader(test_dataset, batch_size=512, shuffle=False)
