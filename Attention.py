@@ -30,8 +30,10 @@ class MultiHeadAttention(nn.Module):
         self.head_size = embed_dim // num_heads
         self.HeadsList = nn.ModuleList([SelfAttention(embed_dim, self.head_size) for _ in range(num_heads)])
         self.output_proj = nn.Linear(embed_dim, embed_dim)
+        self.dropout = nn.Dropout(p=0.1)
 
     def forward(self, x):
         attention = torch.cat([h(x, x, x) for h in self.HeadsList], dim=-1)
         attention = self.output_proj(attention)
+        attention = self.dropout(attention)
         return attention

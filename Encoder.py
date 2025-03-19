@@ -17,7 +17,9 @@ class Encoder(nn.Module):
         self.LN1 = nn.LayerNorm(embed_dim)
         self.LN2 = nn.LayerNorm(embed_dim)
 
+        self.dropout = nn.Dropout(p=0.1)
+
     def forward(self, x):
         x = x + self.MSA(self.LN1(x))
-        x = x + self.MLP(self.LN2(x))
+        x = x + self.dropout(self.MLP(self.LN2(x)))
         return x

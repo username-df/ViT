@@ -9,6 +9,7 @@ class PatchEmbed(nn.Module):
         self.lin_proj = nn.Linear(3*patch_size**2, embed_dim) # linear projection of patches
         self.pos_enc = nn.Parameter(torch.randn(num_patches+1, embed_dim), requires_grad=True) # learnable positional encoding
         self.cls_token = nn.Parameter(torch.randn(1, embed_dim), requires_grad=True) # learnable CLS token
+        self.dropout = nn.Dropout(p=0.1)
 
     def forward(self, image):
         # image = (batch_size, 3, img_size[0], img_size[1])
@@ -18,6 +19,7 @@ class PatchEmbed(nn.Module):
 
         # (batch_size, num_patches, embed_dim)
         proj = self.lin_proj(patches) 
+        proj = self.dropout(proj)
         
         # account for batch size -> (batch_size, 1, embed_dim)
         cls_tokens = self.cls_token.expand(proj.shape[0], -1, -1) 
