@@ -17,7 +17,7 @@ class Encoder(nn.Module):
         self.LN1 = nn.LayerNorm(embed_dim)
         self.LN2 = nn.LayerNorm(embed_dim)
 
-        self.drop_path = ops.StochasticDepth(p=p, mode="batch")
+        self.drop_path = ops.StochasticDepth(p, mode="batch")
 
     def forward(self, x):
         x = x + self.drop_path(self.MSA(self.LN1(x)))
