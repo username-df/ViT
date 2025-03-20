@@ -5,12 +5,22 @@ from PatchEmbed import PatchEmbed
 from Encoder import Encoder
 
 class ViT(nn.Module):
-    def __init__(self, img_size, patch_size, embed_dim, num_heads, num_classes):
+    def __init__(self, img_size, patch_size, embed_dim, num_heads, num_blocks, num_classes, probs):
         super().__init__()
         num_patches = (img_size ** 2) // (patch_size ** 2)
         self.embed = PatchEmbed(patch_size, num_patches, embed_dim)
-        self.encoder = Encoder(embed_dim, num_heads)
-        self.final_MLP = nn.Linear(embed_dim, num_classes)
+
+        self.encoder = nn.Sequential(*[
+            Encoder(embed_dim, num_heads, probs[i]) for i in range(num_blocks)
+        ])
+
+        self.final_MLP = nn.Sequential(
+            nn.LayerNorm(embed_dim),
+            nn.Linear(embed_dim, 4*embed_dim),
+            nn.GELU(),
+            nn.Dropout(0.1),
+            nn.Linear(4*embed_dim, num_classes)
+        )
 
     def forward(self, image):
         x = self.embed(image)
