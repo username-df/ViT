@@ -53,7 +53,7 @@ The CLS token is also used, similar to BERT. The CLS token summarizes the inform
 The CLS token is concatenated to the start of the embedded patch sequence and the positional encoding is added to get the final patch embedding.
 
 <div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/4024c3a0-d1eb-4bbf-ae31-194380e0ee02" width=400 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/8ac338f9-9d30-4295-b931-5acd06a0ba04" width=450 style="margin-right: 20px;" />
 </div>
 
 ## Multi-Head Attention
@@ -61,7 +61,7 @@ The CLS token is concatenated to the start of the embedded patch sequence and th
 The patch embedding is then used as input to the Transformer Encoder. The main component of the Transformer Encoder is Multi-Head Attention.
 
 <div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/36c0d77b-3720-492e-a7f0-4558d8a89393" width=200 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/9feced5f-a183-44fc-9d21-80ee5b7d8773" width=200 style="margin-right: 20px;" />
 </div>
 
 Self-Attention allows the Vision Transformer to focus on the relevant parts of the patch sequence by calculating a weighted sum of transformed patch embeddings. This prioritizes parts of the image containing important features like edges or textures, while reducing the impact of less important parts.
@@ -84,11 +84,11 @@ Multi-Head Attention is an extension of Self-Attention, where instead of doing S
 
 ## Transformer Encoder
 
-
 The Transformer Encoder takes Multi-Head Attention and adds skip connections, layer norm and a multi-layer perceptron. 
 
 <div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/5b02ec54-1f20-4eec-85f1-22a189ab8478" width=400 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/55e58f66-10c2-4ffb-8dde-fee0e6f0cb0b" width=200 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/bd244db8-bc20-41d4-a044-a199c839118e" width=400 style="margin-right: 20px;" />
 </div>
 
 ## Vision Transformer (ViT)
