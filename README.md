@@ -66,20 +66,20 @@ The patch embedding is then used as input to the Transformer Encoder. The main c
 
 Self-Attention allows the Vision Transformer to focus on the relevant parts of the patch sequence by calculating a weighted sum of transformed patch embeddings. This prioritizes parts of the image containing important features like edges or textures, while reducing the impact of less important parts.
 
-This done by taking the input sequence and transforming it, using learned linear layers, into three different matrices, the queries (Q), the keys (K), and the values (V). A dot product between the queries and keys is calculated and then scaled by the square root of the dimensionality of the keys. A softmax is then used to normalize the scores between 0 and 1. A weighted sum between the softmax scores and the value matrix is computed to see the importance of each patch; the CLS token summarizes the information from the weighted sum.
+This done by creating queries (Q), keys (K), and values (V) from linear projections of the original sequence. A dot product between the queries and keys is calculated and then scaled by the square root of the dimensionality of the keys. A softmax is then used to normalize the scores between 0 and 1. A weighted sum between the softmax scores and the values is computed to see the importance of each patch; the CLS token summarizes the information from the weighted sum.
 
 <div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/a66dd65d-86b5-4b6a-b9ce-b6aee4173c64" width=400 style="margin-right: 20px;" />
 </div>
 
 <div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/65c6eac4-a7e8-4259-8b8c-b1fc1487339e" width=400 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/ef3fa0a1-c333-4a66-92b2-d33372dd768c" width=400 style="margin-right: 20px;" />
 </div>
 
-Multi-Head Attention is an extension of Self-Attention, where instead of doing Self-Attention once, it is done h times parallel.  The dimensionality of the model is split evenly across h heads, the dimensionality of each head is d_model / h. Each head performs self-attention independently, creating their own set of queries, keys and values. The output of all the heads are concatenated into a single matrix and passed through another linear layer to produce the final output.
+Multi-Head Attention is an extension of Self-Attention, where instead of doing Self-Attention once, it is done h times.  The dimensionality of the model is split evenly across h heads; the dimensionality of each head is d_model / h. Each head performs self-attention independently. The output of all the heads are concatenated into a single matrix and passed through another linear layer to produce the final output.
 
 <div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/79221301-2869-4233-9cee-01577d011c04" width=650 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/3f029e55-7092-4112-ad9e-2fb819c40a0e" width=650 style="margin-right: 20px;" />
 </div>
 
 ## Transformer Encoder
