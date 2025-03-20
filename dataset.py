@@ -3,7 +3,8 @@ from torchvision import datasets
 from torch.utils.data import DataLoader
 
 transform = transforms.Compose([
-    transforms.Resize((32, 32)),
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomResizedCrop((32, 32)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.4914, 0.4822, 0.4465],
                          std=[0.2023, 0.1994, 0.2010])
