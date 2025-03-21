@@ -5,13 +5,13 @@ from PatchEmbed import PatchEmbed
 from Encoder import Encoder
 
 class ViT(nn.Module):
-    def __init__(self, img_size, patch_size, embed_dim, num_heads, num_blocks, num_classes, probs):
+    def __init__(self, img_size, patch_size, embed_dim, num_heads, num_blocks, num_classes):
         super().__init__()
         num_patches = (img_size ** 2) // (patch_size ** 2)
         self.embed = PatchEmbed(patch_size, num_patches, embed_dim)
 
         self.encoder = nn.Sequential(*[
-            Encoder(embed_dim, num_heads, probs[i]) for i in range(num_blocks)
+            Encoder(embed_dim, num_heads) for _ in range(num_blocks)
         ])
 
         self.final_MLP = nn.Sequential(
