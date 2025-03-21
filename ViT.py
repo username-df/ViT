@@ -14,13 +14,7 @@ class ViT(nn.Module):
             Encoder(embed_dim, num_heads) for _ in range(num_blocks)
         ])
 
-        self.final_MLP = nn.Sequential(
-            nn.LayerNorm(embed_dim),
-            nn.Linear(embed_dim, 4*embed_dim),
-            nn.GELU(),
-            nn.Dropout(0.1),
-            nn.Linear(4*embed_dim, num_classes)
-        )
+        self.final_MLP =  nn.Linear(embed_dim, num_classes)
 
     def forward(self, image):
         x = self.embed(image)
