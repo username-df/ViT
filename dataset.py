@@ -6,7 +6,7 @@ transform = transforms.Compose([
     transforms.RandomHorizontalFlip(),
     transforms.ColorJitter(0.1, 0.1, 0.1),
     transforms.RandomResizedCrop((32, 32)),
-    transforms.ToTensor(),
+    transforms.ToTensor()
     transforms.Normalize(mean=[0.4914, 0.4822, 0.4465],
                          std=[0.2023, 0.1994, 0.2010])
 ])
