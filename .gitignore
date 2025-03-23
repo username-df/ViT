@@ -3,5 +3,4 @@
 *.jpeg
 __pycache__
 cifar10
-cifar100
 saved_models
