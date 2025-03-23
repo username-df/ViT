@@ -93,8 +93,24 @@ The Transformer Encoder takes Multi-Head Attention and adds skip connections, la
 
 ## Vision Transformer (ViT)
 
-The Vision Transformer takes the final CLS token result as input to a MLP which acts as a classifier for the image.
+The Vision Transformer utilizes multiple encoder blocks and uses the final CLS token as input to a MLP, which acts as a classifier for the image.
 
 <div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/89ee9b29-9954-4ece-bf66-ec3abfa2f49b" width=500 style="margin-right: 20px;" />
+  <img src="https://github.com/user-attachments/assets/1bdf7968-97e4-4fdc-8155-7808c9084fc5" width=550 style="margin-right: 20px;" />
 </div>
+
+## Training
+
+To train a Vision Transformer, multiple regularization techniques are required. The following were used: 
+
+- data augmentation (horizontal flip, color jitter, cropping, normalization)
+- drop out after linear layers
+- weight decay/L2 regularization ( + AdamW optimizer instead of Adam)
+- cosine learning rate scheduler
+- label smoothing
+
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/750ac2cd-ce0f-42ab-8336-3a130fc93704" width=550 style="margin-right: 20px;" />
+</div>
+
+The model achieved around 77% test accuracy on CIFAR10 after 100 epochs.
